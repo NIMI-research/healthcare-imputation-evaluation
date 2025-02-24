@@ -31,20 +31,15 @@ def get_config(mode):
 
         imputer = imputation_config["imputer"]
         dataset_name = imputation_config["dataset"]
-        obs_size = imputation_config["observation_size"]
-        missing_cols = imputation_config["missing_columns"]
-        missing_type = imputation_config["missing_type"]
 
-        return imputer, dataset_name, obs_size, missing_cols, missing_type
+        return imputer, dataset_name
     
     elif mode == "eval":
         eval_config = config["eval_config"]
+        
         dataset_name = eval_config["dataset"]
-        obs_size = eval_config["observation_size"]
-        missing_cols = eval_config["missing_columns"]
         imputer = eval_config["imputer"]
-        imp_data_path = eval_config["imputed_data_path"]
-        return dataset_name, obs_size, missing_cols, imputer, imp_data_path
+        return dataset_name, imputer
     
 def get_yaml():
 
