@@ -1,0 +1,7 @@
+# Set train test mode for the Neural Nets mode
+TRAIN: False
+TRAIN_TEST: True
+# -----------------------------------------------------------
+# If test is set to True, remove the path incase of TRAIN_TEST
+TEST: False
+MODEL_PATH: 

@@ -1,0 +1,28 @@
+{
+    "create_missing" : {
+        "dataset" : "tud",
+        "path" : "dataset/mimiciv_full_data.csv",
+        "observation_size" : 11,
+        "action_size" : 3,
+        "missing_columns" : ["blood_paco2", "blood_pao2"],
+        "missing_type" : "random",
+        "percent_missing" : 60,
+        "steps" : ""
+    },
+
+    "imputation_config" : {
+        "imputer" : "ssl",
+        "dataset" : "tud",
+        "observation_size" : 1,
+        "missing_columns" : [],
+        "missing_type" : ""
+    },
+
+    "eval_config" : {
+        "dataset" : "MIMICIV",
+        "observation_size" : 11,
+        "missing_columns" : ["blood_paco2", "blood_pao2"],
+        "imputer" : "knn_15",
+        "imputed_data_path" : "Imputation_results/mimiciv_w_imputed_nn_random.csv"
+    }
+}
