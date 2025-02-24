@@ -33,7 +33,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.impute:
-        imputer, dataset_name, _, _, _ = get_config("impute")
+        imputer, dataset_name = get_config("impute")
 
         if dataset_name == "mimiciv":
             dataset_cfg = MimicConfig()
@@ -111,7 +111,7 @@ if __name__ == "__main__":
         create_missing_dataset(dataset_cfg.data_name, dataframe, dataset_cfg.missing_state_vector, steps=None, random=True, percent = p_missing)
 
     elif args.eval:
-        dataset_name, _, _, imputer, _ = get_config("eval")
+        dataset_name, imputer = get_config("eval")
         #og_col_1, og_col_2, imputed_col_1, imputed_col_2 = load_eval_columns(dataset_name, observation_size, imputed_data_path)
         
         if dataset_name == "MIMICIV":
