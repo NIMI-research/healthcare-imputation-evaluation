@@ -12,17 +12,11 @@
 
     "imputation_config" : {
         "imputer" : "ssl",
-        "dataset" : "tud",
-        "observation_size" : 1,
-        "missing_columns" : [],
-        "missing_type" : ""
+        "dataset" : "tud"
     },
 
     "eval_config" : {
         "dataset" : "MIMICIV",
-        "observation_size" : 11,
-        "missing_columns" : ["blood_paco2", "blood_pao2"],
-        "imputer" : "knn_15",
-        "imputed_data_path" : "Imputation_results/mimiciv_w_imputed_nn_random.csv"
+        "imputer" : "knn_15"
     }
 }
