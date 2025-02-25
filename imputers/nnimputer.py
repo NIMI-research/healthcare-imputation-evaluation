@@ -33,37 +33,20 @@ class NeuralNetworkImputer:
 
     def fit(self, target_col: str = None):
         print("Training Started...\n")
-        #self.X_train, self.X_val, self.X_test, self.y_train, self.y_val, self.y_test = load_non_missing_data(self.data_name, self.obs_size, splitted=True, predict_data=False, target_col_index=target_col)
         self.X_train, self.X_val, self.y_train, self.y_val = load_non_missing_data(self.missing_data_path, self.columns, self.missing_cols, target_col=target_col, splitted=True, test_data=False)
-        #print(self.X_train.shape, self.X_val.shape, self.y_train.shape, self.y_val.shape)
-
 
         self.X_train_scaled = scaler().fit_transform(self.X_train)
         self.X_val_scaled = scaler().fit_transform(self.X_val)
-        '''self.y_train_scaled = scaler().fit_transform(self.y_train)
-        self.y_val_scaled = scaler().fit_transform(self.y_val)'''
-
-        '''self.X_train_scaled = np.array(self.X_train_scaled, dtype=np.float32)
-        self.X_val_scaled = np.array(self.X_val_scaled, dtype=np.float32)
-        self.y_train = np.array(self.y_train, dtype=np.float32)
-        self.y_val = np.array(self.y_val, dtype=np.float32)'''
         
         self.X_train_scaled = self.X_train_scaled.reshape((self.X_train_scaled.shape[0], 1, self.X_train_scaled.shape[1])) 
         self.X_val_scaled = self.X_val_scaled.reshape((self.X_val_scaled.shape[0], 1, self.X_val_scaled.shape[1]))
-        #self.X_test  = self.X_test.values.reshape((self.X_test.shape[0], 1, self.X_test.shape[1]))
-        #print(self.X_train.shape, self.X_val.shape, self.X_test.shape, self.y_train.shape, self.y_val.shape, self.y_test.shape)
         
         self.model = Sequential()
         self.model.add(GRU(64, input_shape=(1, self.X_train_scaled.shape[2])))
-        #self.model.add(GRU(32, return_sequences=True))
-        #self.model.add(GRU(16))
         self.model.add(Dense(8, activation='relu'))
         self.model.add(Dense(1, activation='linear'))
-        #print("Neural Netword based Imputation. \n")
 
         directory_path = f"{self.model_directory}/col_{target_col}/"
-
-        #os.makedirs(directory_path, exist_ok=True)
         os.makedirs(f"{directory_path}", exist_ok=True)
 
         cp = ModelCheckpoint(f"{directory_path}/model_cp.keras", save_best_only=True)
@@ -103,12 +86,6 @@ class NeuralNetworkImputer:
         imputed_col = self.transform(target_col_ft)
 
         return imputed_col
-
-
-    def compare(self, imp):
-        og_col_1, og_col_2, imputed_col_1, imputed_col_2 = load_eval_columns(self.data_name, self.obs_size, "Imputation_results/Hopper-v4_w_imputed_nn_random.csv")
-
-        plot_line(imputed_col_1[:50], og_col_1[:50])
         
 
     def fill_imputation(self, missing_dataframe, column, imputed_col):
