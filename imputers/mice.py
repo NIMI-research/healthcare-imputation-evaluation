@@ -4,7 +4,6 @@ from tqdm import tqdm
 
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
-#from miceforest import mean_match_default, mean_match_shap
 
 from utils.impute_fill import fill_missing_with_imputed_data
 
@@ -38,9 +37,7 @@ class MiceImputer:
 
 
     def mice_forest(dataframe: pd.DataFrame, dataset_cfg):
-        print("mf")
-        '''mean_match_custom = mean_match_default.copy()
-        mean_match_custom.set_mean_match_candidates(32)'''
+        print("Miceforest Imputation")
 
         columns = dataframe.columns
 

@@ -31,21 +31,21 @@ class MimicConfig:
         self.imputed_data_path = f"Imputation_results/{self.data_name}_imputed"
 
     
-class TudConfig:
+class MinicConfig:
     def __init__(self):
-        self.data_name = "tud_3"
+        self.data_name = "minic_3"
 
         self.state_vector = ["BEa","HaCO3","Lactat","PaCO2", "SaO2", "pHa", "SpO2"]
         self.missing_state_vector = ["BEa","pHa"]
         self.action_vector = []
-        self.full_data_path = "datasets\\tud_state_vector_v3.csv"
-        self.missing_data_path = "datasets/tud_3_w_missing_values_random.csv"
-        self.imputed_data_path = "Imputation_results/tud_imputed"
+        self.full_data_path = "datasets\\minic_state_vector_v3.csv"
+        self.missing_data_path = "datasets/minic_3_w_missing_values_random.csv"
+        self.imputed_data_path = "Imputation_results/minic_imputed"
 
 
         '''self.state_vector = ["BEa","HaCO3","Lactat","PaCO2","PaO2", "SaO2", "pHa", "HR", "SpO2"]
         self.missing_state_vector = ["PaCO2","PaO2"]
         self.action_vector = []
-        self.full_data_path = "datasets\\tud_state_vector_v4.csv"
-        self.missing_data_path = "datasets/tud_4_w_missing_values_random.csv"
-        self.imputed_data_path = "Imputation_results/tud_4_imputed_8"'''
+        self.full_data_path = "datasets\\minic_state_vector_v4.csv"
+        self.missing_data_path = "datasets/minic_4_w_missing_values_random.csv"
+        self.imputed_data_path = "Imputation_results/minic_4_imputed_8"'''

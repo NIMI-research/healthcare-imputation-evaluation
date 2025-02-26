@@ -96,29 +96,5 @@ def create_missing_dataset(dataset: str, dataframe: pd.DataFrame, miss_cols: lis
         file_name = f"dataset/{dataset}_w_missing_values_random.csv"
 
     dataframe.to_csv(file_name, index=False)
-
-    '''# Taking the middle indexed column to modify
-    col_index = num_of_cols // 2
-
     
-
-    col_to_modify_1 = dataframe.iloc[:, col_index]
-    col_to_modify_2 = dataframe.iloc[:, col_index + 1]
-
-    if steps:
-        col_to_modify_1 = create_missing_values_steps(col_to_modify_1, 0, 5)
-        col_to_modify_2 = create_missing_values_steps(col_to_modify_2, 2, 5)
-
-        dataframe.iloc[:, col_index] = col_to_modify_1
-        dataframe.iloc[:, col_index + 1] = col_to_modify_2
-
-        dataframe.to_csv(f"dataset/{dataset}_w_missing_values_step.csv", index=False)
-
-    elif random:
-        dataframe = create_missing_values_random(dataframe, col_index, percent)
-        dataframe = create_missing_values_random(dataframe, col_index+1, percent)
-
-        dataframe.to_csv(f"dataset/{dataset}_w_missing_values_random.csv", index=False)'''
-
-    #dataframe.to_csv(f"dataset/{dataset}_w_missing_values.csv", index=False)
     print("Missing Data saved in \"Dataset\" Folder")

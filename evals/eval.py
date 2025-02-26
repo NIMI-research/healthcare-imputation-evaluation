@@ -20,7 +20,7 @@ class Evaluation:
         normalized_mae = mae / range_of_values
         normalized_rmse = rmse / range_of_values
 
-        file_path = "evals_1/evaluations.csv"
+        file_path = "evals/evaluations.csv"
         flag = os.path.exists(file_path)
 
         time = datetime.now().strftime("%d/%m/%y %H:%M:%S")

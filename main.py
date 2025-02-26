@@ -13,7 +13,7 @@ from imputers.nnimputer import NeuralNetworkImputer
 from imputers.ssl_imputer import SSLImputer
 
 from evals.eval import Evaluation as eval
-from dataset_config import MimicConfig, TudConfig, HopperConfig
+from dataset_config import MimicConfig, MinicConfig, HopperConfig
 
 
 import warnings
@@ -35,12 +35,10 @@ if __name__ == "__main__":
     if args.impute:
         imputer, dataset_name = get_config("impute")
 
-        if dataset_name == "mimiciv":
+        if dataset_name == "MIMICIV":
             dataset_cfg = MimicConfig()
-            #columns = ["vent_etco2", "vent_fio2", "vital_spo2", "vital_hr","vent_rrtot", "blood_paco2", "blood_pao2"]
-        elif dataset_name == "tud":
-            dataset_cfg = TudConfig()
-            #columns = [i for i in range(observation_size)]
+        elif dataset_name == "MINIC":
+            dataset_cfg = MinicConfig()
         elif dataset_name == "hopper":
             dataset_cfg = HopperConfig()
 
@@ -97,10 +95,10 @@ if __name__ == "__main__":
         dataset_name, _, _, _, _, missing_type, p_missing, steps = get_config("create_missing")
         print("Dataset: ", dataset_name.capitalize())
 
-        if dataset_name == "mimiciv":
+        if dataset_name == "MIMICIV":
             dataset_cfg = MimicConfig()
-        elif dataset_name == "tud":
-            dataset_cfg = TudConfig()
+        elif dataset_name == "MINIC":
+            dataset_cfg = MinicConfig()
         elif dataset_name == "hopper":
             dataset_cfg = HopperConfig()
             
@@ -117,7 +115,7 @@ if __name__ == "__main__":
         if dataset_name == "MIMICIV":
             dataset_cfg = MimicConfig()
         elif dataset_name == "MINIC":
-            dataset_cfg = TudConfig()
+            dataset_cfg = MinicConfig()
         elif dataset_name == "hopper":
             dataset_cfg = HopperConfig()
 
@@ -132,7 +130,7 @@ if __name__ == "__main__":
             'vital_SBP':'SBP', 'vital_SVRI': 'SVR', 'blood_INR': 'INR', 'blood_PTT': 'PTT', 'daemo_sex':'Sex',
             'daemo_weight':'Weight', 'daemo_height':'Height', 'daemo_discharge':'Discharge', 'blood_calcium':'Calcium', 'blood_chlorid':'Chloride', 'blood_caion':'Ionized Calcium', 'blood_magnes':'Magnesium', 'blood_potas':'Potasium', 'blood_sodium':'Sodium', 'vital_cvp':'CVP', 'cum_fluid_balance':'Fluid Balance', 'state_ivfluid4h':'IV Fluid', 'vent_etco2':'EtCO2', 'blood_paco2':'PaCO2', 'blood_pao2':'PaO2', 'vent_fio2':'FiO2', 'vital_spo2':'SpO2', 'blood_sao2':'SaO2', 'blood_svo2':'SvO2', 'blood_sco2':'SCO2', 'blood_smvo2':'SmvO2', 'blood_plat':'Platelets', 'blood_hb':'Hb', 'blood_hct':'Hct', 'blood_wbc':'WBC', 'vital_co':'CO', 'vital_hr':'HR', 'vital_rr':'RR', 'vital_temp':'Temp', 'vital_urine':'Urine', 'state_bun':'BUN', 'blood_crea':'Creatinine', 'state_urin4h':'Urine Output', 'blood_album':'Albumin', 'blood_ast':'AST', 'blood_alt':'ALT', 'blood_billi':'Bilirubin', 'blood_lac':'Lactate', 'blood_gluco':'Glucose', 'state_temp':'Temperature', 'vent_inspexp':'Insp/Exp', 'vent_pinsp':'Pinsp', 'vent_mairpress':'Mairpress', 'vent_mv':'MV', 'vent_peep':'PEEP', 'vent_rsbi':'RSBI', 'vent_rrtot':'RRTot', 'vent_rrcontrolled':'RRControlled', 'vent_rrspont':'RRSpont', 'vent_suppress':'press_sup', 'vent_vt':'VT', 'vent_vtnorm':'VTNorm', 'vent_mode':'Mode', 'state_airtype':'Airtype', 'blood_ffp':'FFP', 'blood_prbc':'PRBC', 'daemo_morta':'Mortality', 'episode_id':'episode_id'}
 
-            tud_map = {
+            minic_map = {
                     'caseid':'caseid', 'min duration':'min duration', 'max duration':'max duration', 'BM':'BM', 'FiO2':'FiO2', 'Hilfsdruck':'Hilfsdruck',
                     'IE':'IE', 'MV':'MV', 'PEEP':'PEEP', 'Pinsp':'Pinsp', 'RR':'RR', 'VT':'VT', 'etCO2':'EtCO2', 'Abnahme':'Abnahme', 'BEa':'BE',
                     'HaCO3':'HCO3', 'Hba':'Hb', 'Lactat':'Lactat', 'PaCO2':'PaCO2', 'PaO2':'PaO2', 'PaO2/FiO2':'FiO2', 'SaO2':'SaO2', 'pHa':'pH',
@@ -144,5 +142,5 @@ if __name__ == "__main__":
                     'Pplat':'Pplat', 'BE':'BE', 'SO2':'SO2', 'pH':'pH', 'RR_spont':'RR_spont', 'Hb':'Hb', 'SVer':'SVer', 'VO2':'VO2', 'AZV_spont':'AZV_spont'
                     }  
             
-            col = mimic_map[col] if dataset_name == "MIMICIV" else tud_map[col] 
+            col = mimic_map[col] if dataset_name == "MIMICIV" else minic_map[col] 
             plot_line(imputed_col[:200], og_col[:200], dataset_name, imputer, col)

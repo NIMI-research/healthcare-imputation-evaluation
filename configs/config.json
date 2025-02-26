@@ -12,7 +12,7 @@
 
     "imputation_config" : {
         "imputer" : "ssl",
-        "dataset" : "tud"
+        "dataset" : "MINIC"
     },
 
     "eval_config" : {

@@ -40,14 +40,10 @@ class SSLImputer:
 
     def fill_missing_cells(self, missing_data_path, imputed_df):
         missing_data = pd.read_csv(missing_data_path, usecols=self.columns)
-        #print(missing_data.head())
         missing_mask = np.where(np.isnan(missing_data), 1, 0)
-        #print(missing_mask)
         filled_cells_df = imputed_df * missing_mask
-        #print(filled_cells_df.head())
 
         filled_missing_cells_df = missing_data.fillna(filled_cells_df)
-        #print(filled_missing_cells_df.head())
 
         return filled_missing_cells_df
 
@@ -83,7 +79,6 @@ class SSLImputer:
         print("Imputation Completed...\n")
 
         imputed_df = pd.DataFrame(unscaled_imputed_data, columns=self.columns)
-        #print(imputed_df.head())
         imputed_data_filled = self.fill_missing_cells(self.missing_data_path, imputed_df)
         filled_data = fill_missing_with_imputed_data(self.missing_data_path, imputed_data_filled)
         print("Saving the imputed data \n")
